@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/employees")
-@RequiredArgsConstructor
 public class EmployeeController {
 
     private final EmployeeService employeeService;
-
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable Long id) {
         EmployeeDto employeeDto = employeeService.getEmployeeById(id);

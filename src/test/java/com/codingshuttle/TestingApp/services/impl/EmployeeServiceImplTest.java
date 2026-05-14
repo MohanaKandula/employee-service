@@ -47,12 +47,13 @@ class EmployeeServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        mockEmployee = Employee.builder()
-                .id(1L)
-                .email("anuj@gmail.com")
-                .name("Anuj")
-                .salary(200L)
-                .build();
+        mockEmployee = new Employee(
+                1L,
+                "abc@gmail.com",
+                "John",
+                100L,
+                null
+        );
 
         mockEmployeeDto = modelMapper.map(mockEmployee, EmployeeDto.class);
     }
@@ -137,7 +138,7 @@ class EmployeeServiceImplTest {
     @Test
     void testUpdateEmployee_whenAttemptingToUpdateEmail_thenThrowException() {
         when(employeeRepository.findById(mockEmployeeDto.getId())).thenReturn(Optional.of(mockEmployee));
-        mockEmployeeDto.setName("Random");
+        mockEmployeeDto.setFullName("Random");
         mockEmployeeDto.setEmail("random@gmail.com");
 
 //        act and assert
@@ -154,7 +155,7 @@ class EmployeeServiceImplTest {
     void testUpdateEmployee_whenValidEmployee_thenUpdateEmployee() {
 //        arrange
         when(employeeRepository.findById(mockEmployeeDto.getId())).thenReturn(Optional.of(mockEmployee));
-        mockEmployeeDto.setName("Random name");
+        mockEmployeeDto.setFullName("Random name");
         mockEmployeeDto.setSalary(199L);
 
 

@@ -8,11 +8,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@RequiredArgsConstructor
+
 @SpringBootApplication
 public class TestingAppApplication implements CommandLineRunner {
 
 //	private final DataService dataService;
+//
+//	public TestingAppApplication(DataService dataService) {
+//		this.dataService = dataService;
+//	}
 
 	@Value("${my.variable}")
 	private String myVariable;
@@ -26,6 +30,6 @@ public class TestingAppApplication implements CommandLineRunner {
 
 		System.out.println("my variable: "+myVariable);
 
-//		System.out.println("The data is: "+dataService.getData());
+		//System.out.println("The data is: "+dataService.getData());
 	}
 }

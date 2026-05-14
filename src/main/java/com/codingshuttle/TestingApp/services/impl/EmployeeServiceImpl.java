@@ -1,25 +1,32 @@
 package com.codingshuttle.TestingApp.services.impl;
-
-
 import com.codingshuttle.TestingApp.dto.EmployeeDto;
 import com.codingshuttle.TestingApp.entities.Employee;
 import com.codingshuttle.TestingApp.exceptions.ResourceNotFoundException;
 import com.codingshuttle.TestingApp.repositories.EmployeeRepository;
 import com.codingshuttle.TestingApp.services.EmployeeService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+
 import org.modelmapper.ModelMapper;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-@Slf4j
 @Service
-@RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
+
+    private static final Logger log =
+            LoggerFactory.getLogger(EmployeeServiceImpl.class);
 
     private final EmployeeRepository employeeRepository;
     private final ModelMapper modelMapper;
+
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository,
+                               ModelMapper modelMapper) {
+        this.employeeRepository = employeeRepository;
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public EmployeeDto getEmployeeById(Long id) {

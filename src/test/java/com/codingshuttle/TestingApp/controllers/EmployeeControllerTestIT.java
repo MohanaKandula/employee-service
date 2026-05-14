@@ -62,7 +62,7 @@ class EmployeeControllerTestIT extends AbstractIntegrationTest{
                 .expectStatus().isCreated()
                 .expectBody()
                 .jsonPath("$.email").isEqualTo(testEmployeeDto.getEmail())
-                .jsonPath("$.name").isEqualTo(testEmployeeDto.getName());
+                .jsonPath("$.fullName").isEqualTo(testEmployeeDto.getFullName());
     }
 
     @Test
@@ -77,7 +77,7 @@ class EmployeeControllerTestIT extends AbstractIntegrationTest{
     @Test
     void testUpdateEmployee_whenAttemptingToUpdateTheEmail_thenThrowException() {
         Employee savedEmployee = employeeRepository.save(testEmployee);
-        testEmployeeDto.setName("Random Name");
+        testEmployeeDto.setFullName("Random Name");
         testEmployeeDto.setEmail("random@gmail.com");
 
         webTestClient.put()
@@ -90,7 +90,7 @@ class EmployeeControllerTestIT extends AbstractIntegrationTest{
     @Test
     void testUpdateEmployee_whenEmployeeIsValid_thenUpdateEmployee() {
         Employee savedEmployee = employeeRepository.save(testEmployee);
-        testEmployeeDto.setName("Random Name");
+        testEmployeeDto.setFullName("Random Name");
         testEmployeeDto.setSalary(250L);
 
         webTestClient.put()

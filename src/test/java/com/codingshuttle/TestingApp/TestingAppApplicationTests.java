@@ -1,16 +1,17 @@
 package com.codingshuttle.TestingApp;
-
-import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.assertj.core.data.Offset;
 import org.junit.jupiter.api.*;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@Slf4j
+
 class TestingAppApplicationTests {
 
+	private static final Logger log =
+			LoggerFactory.getLogger(TestingAppApplicationTests.class);
 	@BeforeEach
 	void setUp() {
 		log.info("Starting the method, setting up config");
